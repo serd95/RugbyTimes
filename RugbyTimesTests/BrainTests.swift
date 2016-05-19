@@ -24,10 +24,24 @@ class BrainTests: XCTestCase {
     }
 
     func testCurrentTimeZone() {
-        let result = brain.getCurrentTimezone()
+        let result = brain.currentTimezone
         XCTAssertEqual(result, "EDT")
     }
-
     
-
+    func testCurrentHoursFromGMT() {
+        let result = brain.currentHoursFromGMT
+        XCTAssertEqual(result, -4)
+    }
+    
+    func testConvertTime() {
+        let result = brain.convertTime(3, minute: 0, hoursFromGMT: -5)
+        XCTAssertEqual(result.hour, 4)
+    }
+    
+    func testAbvToGMT() {
+        let a = brain.strToAbv("CST")
+        let result = brain.abvToGMT(a)
+        XCTAssertEqual(result, -6)
+    }
+    
 }
